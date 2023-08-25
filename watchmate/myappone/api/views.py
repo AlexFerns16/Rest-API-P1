@@ -13,7 +13,7 @@ class MovieListAV(APIView):
     
     def get(self, request):
         movies = Movie.objects.all()
-        serializer = MovieSerializer(movies, many=True)         
+        serializer = MovieSerializer(movies, many=True)       
         return Response(serializer.data)
 
     def post(self, request):
