@@ -4,11 +4,17 @@ from myappone.models import Movie
 
 class MovieSerializer(serializers.ModelSerializer):
     
+    len_name = serializers.SerializerMethodField()
+    
     class Meta:
         model = Movie
-        fields = ['id', 'name', 'description', 'active']
+        fields = ['id', 'name', 'description', 'active', 'len_name']
         # fields = "__all__"
         # exclude = ['active']
+        
+    def get_len_name(self, object):
+        length = len(object.name)
+        return length
 
     def validate(self, data):
         if data['name'] == data['description']:
